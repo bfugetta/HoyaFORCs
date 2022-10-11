@@ -64,13 +64,20 @@ T_up = T_c_up + 3*T_c_low/4
 ups = [M_up, T_up, A_up, Ku_up, D_up, z_up, theta_var_cell_up, K_var_cell_up]
 lows = [M_low, T_low, A_low, Ku_low, D_low, z_low, theta_var_cell_low, K_var_cell_low]
 
-#do the os stuff
+#location of the data
 label_data_root = "labels.bin"
 image_data_root = "images.bin"
 
-end_model_save_root = "dummy"#Wherever you want the final weight matrix to be saved
 
-assert end_model_save_root != ""
+#These are the locations you wish to store the results of the training data
+filename_test = 'C:\\Users\\bfuge\\Desktop\\College physics\\Research stuff\\Undergrad-Magnetic_Hamiltonian_and_ML\\ML\\github_testing\\test_results.txt'
+filename_train = 'C:\\Users\\bfuge\\Desktop\\College physics\\Research stuff\\Undergrad-Magnetic_Hamiltonian_and_ML\\ML\\github_testing\\train_results.txt'
+best_test = 'C:\\Users\\bfuge\\Desktop\\College physics\\Research stuff\\Undergrad-Magnetic_Hamiltonian_and_ML\\ML\\github_testing\\best_test.txt'
+best_train = 'C:\\Users\\bfuge\\Desktop\\College physics\\Research stuff\\Undergrad-Magnetic_Hamiltonian_and_ML\\ML\\github_testing\\best_train.txt'
+end_model_save_root = 'C:\\Users\\bfuge\\Desktop\\College physics\\Research stuff\\Undergrad-Magnetic_Hamiltonian_and_ML\\ML\\github_testing\\weight_matrix.pt' #Wherever you want the final weight matrix to be saved
+
+assert end_model_save_root != filename_test != filename_train != best_test != best_train != ""
+
 
 g = Github()
 user = g.get_user('bfugetta')
@@ -347,8 +354,6 @@ def train(args, model, device, train_loader, optimizer, epoch):
             print('Train Epoch: {} [{}/{} ({:.0f}%)]\tLoss: {:.6f}'.format(
                 epoch, batch_idx * len(data), len(train_loader.dataset),
                 100. * batch_idx / len(train_loader), loss_1.item()))
-            if args.dry_run:
-                break
 
 
 
@@ -461,14 +466,6 @@ def correlate(model, device, test_loader, epoch, fn_train, fn_test):
                 f.writelines(string)
     return 'done'
 
-
-#These are the locations you wish to store the results of the training data
-filename_test = ''
-filename_train = ''
-best_test = ''
-best_train = ''
-
-assert filename_test != filename_train != best_test != best_train != ""
 
 class Net(nn.Module):
     def __init__(self):
