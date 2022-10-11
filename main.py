@@ -70,11 +70,11 @@ image_data_root = "images.bin"
 
 
 #These are the locations you wish to store the results of the training data
-filename_test = 'C:\\Users\\bfuge\\Desktop\\College physics\\Research stuff\\Undergrad-Magnetic_Hamiltonian_and_ML\\ML\\github_testing\\test_results.txt'
-filename_train = 'C:\\Users\\bfuge\\Desktop\\College physics\\Research stuff\\Undergrad-Magnetic_Hamiltonian_and_ML\\ML\\github_testing\\train_results.txt'
-best_test = 'C:\\Users\\bfuge\\Desktop\\College physics\\Research stuff\\Undergrad-Magnetic_Hamiltonian_and_ML\\ML\\github_testing\\best_test.txt'
-best_train = 'C:\\Users\\bfuge\\Desktop\\College physics\\Research stuff\\Undergrad-Magnetic_Hamiltonian_and_ML\\ML\\github_testing\\best_train.txt'
-end_model_save_root = 'C:\\Users\\bfuge\\Desktop\\College physics\\Research stuff\\Undergrad-Magnetic_Hamiltonian_and_ML\\ML\\github_testing\\weight_matrix.pt' #Wherever you want the final weight matrix to be saved
+filename_test = ''
+filename_train = ''
+best_test = ''
+best_train = ''
+end_model_save_root = '' #Wherever you want the final weight matrix to be saved
 
 assert end_model_save_root != filename_test != filename_train != best_test != best_train != ""
 
