@@ -63,10 +63,8 @@ ups = [M_up, T_up, A_up, Ku_up, D_up, z_up, theta_var_cell_up, K_var_cell_up]
 lows = [M_low, T_low, A_low, Ku_low, D_low, z_low, theta_var_cell_low, K_var_cell_low]
 
 #do the os stuff
-image_data_root = '~\\backup_images_4.bin'
-label_data_root = 'C:\\Users\\bfuge\\Desktop\\College physics\\Research stuff\\Undergrad-Magnetic_Hamiltonian_and_ML\\backups\\backup_labels_4.bin'
-#image_data_root = '/home/bfugetta/playing/with/fire/binary_files/backup_images_4.bin'
-#label_data_root = '/home/bfugetta/playing/with/fire/binary_files/backup_labels_4.bin'
+label_data_root = "https://github.com/bfugetta/ML_and_Magnetic_Hamiltonian/blob/7229b8ef8215136f7e94f87f6055755f3a00e550/labels.bin" #'~\\backup_images_4.bin'
+image_data_root = "https://github.com/bfugetta/ML_and_Magnetic_Hamiltonian/blob/7229b8ef8215136f7e94f87f6055755f3a00e550/images.bin"
 
 end_model_save_root = '/home/bfugetta/save_and_load/newest_model_test_f.pt'
 
