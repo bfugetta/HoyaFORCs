@@ -81,7 +81,7 @@ assert end_model_save_root != filename_test != filename_train != best_test != be
 
 g = Github()
 user = g.get_user('bfugetta')
-repo = user.get_repo("ML_and_Magnetic_Hamiltonian")
+repo = user.get_repo("HoyaFORCs")
 
 
 def decode_3D(root, endianness = 'big'):
