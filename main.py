@@ -1,7 +1,4 @@
-from __future__ import print_function
 import argparse
-import requests
-from github import Github
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -25,6 +22,7 @@ np.random.seed(690)
 mu = 0.9     #momentum
 wd = 0       #weight decay
 rate = 0.01  #learning rate
+
 
 parameter = 4 #DMI
 
@@ -65,23 +63,19 @@ ups = [M_up, T_up, A_up, Ku_up, D_up, z_up, theta_var_cell_up, K_var_cell_up]
 lows = [M_low, T_low, A_low, Ku_low, D_low, z_low, theta_var_cell_low, K_var_cell_low]
 
 #location of the data
-label_data_root = "labels.bin"
-image_data_root = "images.bin"
+label_data_root = "./labels.bin"
+image_data_root = "./images.bin"
 
 
-#These are the locations you wish to store the results of the training data
+#These are the locations you wish to store the results of the training data, should be .txt files
 filename_test = ''
 filename_train = ''
 best_test = ''
 best_train = ''
-end_model_save_root = '' #Wherever you want the final weight matrix to be saved
+#Wherever you want the final weight matrix to be saved, should be .pt file
+end_model_save_root = ''
 
 assert end_model_save_root != filename_test != filename_train != best_test != best_train != ""
-
-
-g = Github()
-user = g.get_user('bfugetta')
-repo = user.get_repo("HoyaFORCs")
 
 
 def decode_3D(root, endianness = 'big'):
@@ -101,11 +95,11 @@ def decode_3D(root, endianness = 'big'):
     if endianness == 'native':
         end = '='
     
-    contents = repo.get_contents(root)
-    url = contents.html_url + "?raw=true"
-    req = requests.get(url, stream=True)
+    f = open(root, 'rb')
     
-    data = req.raw.read() #turns binary file into an array of bytes
+    data = f.read() #turns binary file into an array of bytes
+    
+    f.close() #don't wanna leave that open
     
     nd = data[3] #the number of dimensions of the data in the file
     ty = data[2] #the type of numbers stored in the file
@@ -143,10 +137,11 @@ def decode_2D(root, endianness = 'big'):
     if endianness == 'native':
         end = '='
     
+    f = open(root, 'rb')
     
-    contents = repo.get_contents(root)
+    data = f.read() #turns binary file into an array of bytes
     
-    data = contents.decoded_content #turns binary file into an array of bytes
+    f.close() #don't wanna leave that open
 
     nd = data[3] #the number of dimensions of the data in the file
     ty = data[2] #the type of numbers stored in the file
