@@ -1,30 +1,31 @@
-This is where we put the read me
+# Dataset for training a CNN to estimate DMI strength from simulated magnetometry experiments
 
-GY added this line.
+This repository holds a dataset of images of FORCs taken from simulated materials along with the labels of their corresponding material parameters.
+
+## Requirements
+The training script, main.py, was run and tested with the following versions of python and modules:
+- Python 3.8.10
+- cuda 11.4.2
+- argparse 1.1
+- torch 1.10.1+cu113
+- numpy 1.21.2
+- scipy 1.7.3
+
+## Description of Data files
+- images.bin
+  - 20,000 61x61 grayscale images that encode the results of FORC experiments for simulated materials with random material parameters
+- labels.bin
+  - 20,000 8-parameter labels that correspond to the materials that produced the images in images.bin
+
+## Description of code
+[Main.py](main.py) will extract the data from the [images](images.bin) file and the [labels](labels.bin) file, create a customized neural network, and train that neural network on a portion the images and labels using tuned hyperparameters. It will save the results of the training after each epoch, the performance of the best version of the CNN encountered during training, and the full set of learnable parameters for the CNN at its peak state.
+
 
 ***All the imported tools need to be described in this readme with version number including python version***
-
-from __future__ import print_function
-
-import argparse
-
-import requests
-
-from github import Github
-
-import torch
-import torch.nn as nn
-import torch.nn.functional as F
-import torch.optim as optim
-from torch.optim.lr_scheduler import StepLR
-
-import numpy as np
 
 import random
 
 from math import *
-
-from scipy.optimize import curve_fit
 
 import struct
 
