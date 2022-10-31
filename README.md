@@ -13,7 +13,7 @@ The training script, main.py, was run and tested with the following versions of 
 
 ## Description of Data files
 - images.bin
-  - 20,000 61x61 grayscale images that encode the results of FORC experiments for simulated materials with random material parameters
+  - 20,000 61x61 grayscale images that encode the simulated FORCs with random material parameters
 - labels.bin
   - 20,000 8-parameter labels that correspond to the materials that produced the images in images.bin
 
