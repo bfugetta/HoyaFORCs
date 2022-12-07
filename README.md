@@ -3,6 +3,7 @@
 This repository holds a dataset of images of FORCs taken from simulated materials along with the labels of their corresponding material parameters.
 
 ## Requirements
+Linux version?
 The training script, main.py, was run and tested with the following versions of python and modules:
 - Python 3.8.10
 - cuda 11.4.2
