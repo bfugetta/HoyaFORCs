@@ -10,6 +10,7 @@ The training script, main.py, was run and tested with the following versions of 
 - torch 1.10.1+cu113
 - numpy 1.21.2
 - scipy 1.7.3
+
 pip3 install -r requirements.txt
 ## Description of Data files
 - images.bin
