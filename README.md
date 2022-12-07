@@ -11,7 +11,9 @@ The training script, main.py, was run and tested with the following versions of 
 - numpy 1.21.2
 - scipy 1.7.3
 
+Installation:
 pip3 install -r requirements.txt
+Please config the CUDA follow the instruction on https://pytorch.org/get-started/locally/
 ## Description of Data files
 - images.bin
   - 20,000 61x61 grayscale images that encode the simulated FORCs with random material parameters
