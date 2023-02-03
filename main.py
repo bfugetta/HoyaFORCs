@@ -41,11 +41,11 @@ Ku_up = 10e5
 D_low = 0
 D_up = 5e-3
 
-A_up = 3.5e-11
 A_low = 1e-12
+A_up = 3.5e-11
 
-M_up = 1400e3
 M_low = 200e3
+M_up = 1400e3
 
 K_var_cell_low = 0 
 K_var_cell_up = 20 #Ku standard deviation from region to region (percentage)
@@ -79,7 +79,7 @@ assert end_model_save_root != filename_test != filename_train != best_test != be
 
 
 def decode_3D(root, endianness = 'big'):
-    types = { #important information about different numerical datatypes like including their code for being unpacked by the struct module
+    types = { #important information about different numerical datatypes including their code for being unpacked by the struct module
     8: (torch.uint8, np.uint8, np.uint8, 'B', 1),
     9: (torch.int8, np.int8, np.int8, 'b', 1),
     11: (torch.int16, np.dtype('>i2'), 'i2', 'H', 2),
@@ -178,7 +178,7 @@ for i in range(len(train_images)):
              torch.cat( #takes in a tuple of tensors
                            ( 
                                torch.tensor([[train_images[i]]]),             #we need an extra two dimensions, the first so that we can grab the (FORC image, M_s image) pair for every datapoint, and the second so we can grab the set of FORC images accross all datapoints the set of M_s images accross all datapoints
-                               torch.ones(1, 1, 61, 61)*(train_labels[i][0])  #this concatenation is a sneaky way to subvert issues of combining data of different types, we can easily convert the normalized M_s into an image, combine it with the FORC images of the same dimension, and extract the M_s later very easily
+                               torch.ones(1, 1, 61, 61)*(train_labels[i][0])  #this concatenation is a sneaky way to subvert issues of combining data of different types, we can easily convert the normalized M_s into an image, combine it with the FORC images of the same dimension, and extract the M_s later
                            )
                       ),                                #this concatenated tensor is the input information for the CNN, which is the first entry in the tuple called data 
              torch.tensor(train_labels[i][parameter])   #this tensor is the correct answer the CNN is trying to guess, which is the second entry in the tuple called data
