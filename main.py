@@ -35,8 +35,8 @@ bins = 11 #the number of output nodes used in the nonstandard CNN
 z_low = 10e-9
 z_up = 100e-9
 
-Ku_low = 0
-Ku_up = 10e5
+phi_low = 0
+phi_up = 360
 
 D_low = 0
 D_up = 5e-3
@@ -47,20 +47,13 @@ A_up = 3.5e-11
 M_low = 200e3
 M_up = 1400e3
 
-K_var_cell_low = 0 
-K_var_cell_up = 20 #Ku standard deviation from region to region (percentage)
-
-theta_var_cell_low = 0
-theta_var_cell_up = 10 #theta angle standard deviation (degree)
-
 T_c_up = ((120e-9/16)*A_up)/1.380649e-23
 T_c_low = ((120e-9/16)*A_low)/1.380649e-23  #simple upper and lower estimates for critical temperature
 
 T_low = T_c_low/4 
 T_up = T_c_up + 3*T_c_low/4
 
-ups = [M_up, T_up, A_up, Ku_up, D_up, z_up, theta_var_cell_up, K_var_cell_up]
-lows = [M_low, T_low, A_low, Ku_low, D_low, z_low, theta_var_cell_low, K_var_cell_low]
+
 
 #location of the data
 label_data_root = "./labels.bin"
@@ -164,6 +157,9 @@ def decode_2D(root, endianness = 'big'):
 train_images = decode_3D(image_data_root)
 train_labels = decode_2D(label_data_root)
 train_labels = np.array(train_labels)
+
+ups = [M_up, T_up, A_up, max(train_labels[..., 3]), D_up, z_up, max(max(train_labels[..., 6]), abs(min(train_labels[..., 6]))), phi_up] #the upper bounds of the K_u and theta values must be determined by the data itself because they were generated with gaussians instead of uniform distributions
+lows = [M_low, T_low, A_low, 0, D_low, z_low, -ups[6], phi_low] #the lower bound of K_u can be set to 0, but the theta lower bound is just the negative of the upper bound
 
 for i in range(len(lows)): #normalize the labels to between 0 and 10 using their respective lower and upper bounds
     train_labels[..., i] -= lows[i]
